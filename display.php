@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 <div id="create"><a href="create.php">CREATE NEW</a></div>
+<form action="display.php" method="post">
+	Enter task name : <input type="text" name="txtSearch">
+	<input type="submit" name="btnSearch" class="btn btn-info" value="Search">
+</form>
 <style>
    #create a{
 	text-decoration : none;
@@ -14,7 +18,10 @@
 </style>
 <?php
 	$conn=new mysqli('localhost','root','','todolist');
-	$sql="SELECT * FROM task";
+	$searchtext = "";
+	if(isset($_POST['btnSearch']))
+	  $searchtext = $_POST['txtSearch'];	
+	$sql="SELECT * FROM task WHERE task_name LIKE '%$searchtext%'";
 	$result=$conn->query($sql);
 
 	$list="<table class='table'>

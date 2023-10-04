@@ -1,11 +1,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-
+<a href="create.php">create task</a>
 <?php
 session_start();
 	$conn=new mysqli('localhost','root','','todolist');
 	$sql="SELECT * FROM task WHERE user_id=".$_SESSION['user_id'];
 	$result=$conn->query($sql);
-
 	$list="<table class='table'>
 			<tr>
 				<th>SN</th> <th>Task Name</th> <th>Start Date</th> <th>End Date</th> <th>User ID</th> <th>Action</th> 
